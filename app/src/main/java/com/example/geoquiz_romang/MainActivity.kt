@@ -119,6 +119,22 @@ fun GeoQuizScreen() {
                 }
             }
         }
+
+        if (tecVopros < voprosi.lastIndex) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Button(
+                    onClick = {
+                        tecVopros++
+                        otvetil = false
+                    }
+                ) {
+                    Text("NEXT ❯")
+                }
+            }
+        }
     }
 }
 
