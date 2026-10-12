@@ -9,22 +9,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.geoquiz_romang.ui.theme.GeoQuiz_RomanGTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             GeoQuiz_RomanGTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                GeoQuizScreen()
             }
         }
     }
@@ -44,18 +45,23 @@ val voprosi = listOf(
     Vopros("Lake Baikal is the world's oldest and deepest freshwater lake.", true)
 )
 
+
+
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun GeoQuizScreen() {
+
+    var tecVopros by remember { mutableIntStateOf(0) }
+    var otvetil by remember { mutableStateOf(false) }
+    var correctCount by remember { mutableIntStateOf(0) }
+    var showResult by remember { mutableStateOf(false) }
+
+    val question = voprosi[tecVopros]
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     GeoQuiz_RomanGTheme {
-        Greeting("Android")
+        GeoQuizScreen()
     }
 }
