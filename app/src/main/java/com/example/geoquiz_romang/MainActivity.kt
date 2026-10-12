@@ -46,7 +46,6 @@ val voprosi = listOf(
 )
 
 
-
 @Composable
 fun GeoQuizScreen() {
 
@@ -56,6 +55,21 @@ fun GeoQuizScreen() {
     var showResult by remember { mutableStateOf(false) }
 
     val question = voprosi[tecVopros]
+
+    fun checkOtvet(otvet: Boolean) {
+        if (!otvetil) {
+            if (otvet == question.correctOtvet) {
+                correctCount++
+            }
+
+            otvetil = true
+
+            if (tecVopros == voprosi.lastIndex) {
+                showResult = true
+            }
+        }
+    }
+
 }
 
 @Preview(showBackground = true)
