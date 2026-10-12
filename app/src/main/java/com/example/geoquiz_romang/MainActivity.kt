@@ -4,11 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -95,8 +99,27 @@ fun GeoQuizScreen() {
             textAlign = TextAlign.Center
         )
 
-    }
+        Spacer(modifier = Modifier.height(30.dp))
 
+        if (!otvetil) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Button(
+                    onClick = { checkOtvet(true) }
+                ) {
+                    Text("TRUE")
+                }
+
+                Button(
+                    onClick = { checkOtvet(false) }
+                ) {
+                    Text("FALSE")
+                }
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
